@@ -87,7 +87,6 @@ class BasicEnv(Env):
         elif action == RIGHT:
             if (self.player_position % 6) != 5:
                 self.player_position += 1
-            pass
         else:
             raise Exception("invalid action")
 
@@ -124,7 +123,6 @@ class BasicEnv(Env):
     def render(self):
         # visualization can be added here
         pretty_print(self.state, self.cumulative_reward)
-        pass
     
     def reset(self):
         self.cumulative_reward = 0
@@ -145,8 +143,8 @@ class BasicEnv(Env):
             self.lose_position = random.randrange(0, 36)
             
         self.state[self.player_position] = PLAYER
-        self.state[self.win_position] = PLAYER
-        self.state[self.lose_position] = PLAYER
+        self.state[self.win_position] = WIN
+        self.state[self.lose_position] = LOSE
 
         # convert the python array into a numpy array (needed since Gym expects the state to be this way)
         self.state = np.array(self.state, dtype=np.int16)
